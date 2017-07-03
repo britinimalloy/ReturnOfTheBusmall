@@ -10,3 +10,5 @@
 * image
 * Times clicked
 * Times shown
+
+* These product objects will be stored in an object that will use the product name as the key
