@@ -1,5 +1,8 @@
 # RETURN OF THE FRUSTRATING BUSMALL:
 
+### Helpers:
+* Erica Winberry
+
 ### Day 1:
 * repo/initial commit have been performed
 * scaffolding files have been added
