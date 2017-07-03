@@ -28,3 +28,9 @@
 * Make images have some space between them for ease of clicking
 
 * Display images in side-by-side format
+
+* ### ClickHandler function to handle clicking of image and record:
+* For each image displayed, update the number of times it has been shown
+* For each image clicked, update the number of times it has been clicked.
+
+* Stop user at 25 clicks
