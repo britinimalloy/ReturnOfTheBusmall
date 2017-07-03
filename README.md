@@ -1,4 +1,4 @@
-# RETURN OF THE FRUSTRATING BUSMALL:
+# RETURN OF THE BUSMALL:
 
 ### Helpers:
 * Erica Winberry
