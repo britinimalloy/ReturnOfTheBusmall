@@ -12,13 +12,13 @@
 // userClicks; // number of times the user has clicked
 // maxClicks; // total number of clicks the user is allowed
 // var ____ = document.getElementById(''); // parent element on index where the images will be displayed
-// var ___ = document.creteElement(''); // create list element to display results list on index
+// var ____ = document.creteElement(''); // create list element to display results list on index
 
 
 // ================================
 // ========CONSTRUCTOR=============
 // ================================
-// * ### Have a product object constructor that contains:
+// * Have a product object constructor that contains:
 // * Product name
 // * image
 // * Times clicked
@@ -56,7 +56,7 @@
 // * Each set should have 3 different images from the previous set of images
 
 // * Function to handle comparison of randomly generated image to images in current array and a function to compare to previous array. This will be done using an if/else statement to first check against any in current array then also in previous array. If it matches any in either array, a call will be put in to the random image generator function to get new image and comparison will start all over. If it doesn't match any in current or previous array, it will be pushed into current array.
-// function checkCurrent (variable) {
+// * function checkCurrent (variable) {
 //   if (it matches something in the current array) {
 //     then generateRandomProduct() for new random image
 //   } else {
@@ -65,7 +65,7 @@
 //   set in currentProducts[];
 // }
 
-// function checkPrevious(variable) {
+// * function checkPrevious(variable) {
 //   if (it matches something in previous array) {
 //     then generateRandomProduct() for new random image
 //   } else {
@@ -97,7 +97,7 @@
 // }
 
 
-// Function to set up the list to display the results
+// * Function to set up the list to display the results
 // function setUpList () {
 //   set the parent element by getting element by id from index
 //   append the list to the parent element
@@ -112,16 +112,47 @@
 // }
 
 
-// =====================================
-// =CLICK HANDLER AND RELATED FUNCTIONS=
-// =====================================
-// * ### ClickHandler function to handle clicking of image and record:
-// * For each image clicked, call function to update the number of times it has been clicked.
-// * Call function to update number of times a user has clicked to choose an image
-// * Call function to set previous images array = current images array
-// * Call function to clear current array
-// * Call function to check if number of user clicks < max clicks
-// * Call function to clear image set if it is < max clicks
-// * Then repeat the process of generating 3 new images
-// * If user clicks !< max clicks, remove event handler
-// * Then call function to render results list
+// * start function to get the ball rolling with generating the random images and rendering them to the screen
+// function start () {
+//   // generate 3 non-duplicate, non-repeating from previous images
+//   set array with images by calling generateRandomProduct();
+//   render all 3 to screen by calling renderImages();
+// }
+
+// =========================================
+// ===CLICK HANDLER AND RELATED FUNCTIONS===
+// =========================================
+// * Add event listener to the parent element on index
+// parent.addEventListener ('click', name of click handling function);
+
+
+// * ClickHandler function to handle clicking of image and record:
+// function ClickHandler (event) {
+//   // * Call function to check if number of user clicks < max clicks
+//   first, check to see if (user clicks is at max clicks) {
+//     // * Then call function to render results list
+//     render results list
+//     // * If user clicks !< max clicks, remove event handler
+//     remove event listener so they cant keep clicking
+//   }
+//
+//   step through the current array and update the number of times shown for each of the 3 products
+//
+//   // * Call function to set previous images array = current images array
+//   set previous array to equal current array
+//
+// // * Call function to clear current array
+//   clear the current array
+//
+// // * For each image clicked, call function to update the number of times it has been clicked.
+//   get the id of the chosen image and update its number of times clicked
+//
+// // * Call function to clear image set
+//   remove each of the 3 images from the div
+//
+// // * Call function to update number of times a user has clicked to choose an image
+//   update number of user clicks
+//
+// // * Then repeat the process of generating 3 new images
+//   call start() to repeat the whole process again
+// }
