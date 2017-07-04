@@ -15,8 +15,8 @@ var currentImages = []; // current products array
 var previousImages = ['bag', 'chair', 'water-can'];
 // userClicks; // number of times the user has clicked
 // maxClicks; // total number of clicks the user is allowed
-// var ____ = document.getElementById(''); // parent element on index where the images will be displayed
-// var ____ = document.creteElement(''); // create list element to display results list on index
+var imagesParent = document.getElementById('images'); // parent element on index where the images will be displayed
+// var resultsList = document.creteElement('ul'); // create list element to display results list on index
 
 
 // ================================
@@ -89,7 +89,7 @@ function imageGroupGenerator (previous) {
 console.log('======previous to start=======================');
 console.log(previousImages);
 console.log('=============================');
-imageGroupGenerator(previousImages);
+//imageGroupGenerator(previousImages);
 
 // * Function to handle comparison of randomly generated image to images in current array and a function to compare to previous array. This will be done using an if/else statement to first check against any in current array then also in previous array. If it matches any in either array, a call will be put in to the random image generator function to get new image and comparison will start all over. If it doesn't match any in current or previous array, it will be pushed into current array.
 function checkCurrent (image) {
@@ -118,21 +118,21 @@ function checkPrevious(image) {
 //   return timesShown;
 // }
 
-
+// var imagesParent = document.getElementById('images');
 // * Function to render array of current images to screen
-// function renderImages (namesOfProducts) {
-//   variable, create image element
-//   // set image attributes; they're not all the same file extension
-//   if (usb) {
-//     set image source to have .gif
-//   } else if (sweep) {
-//     set image source to have .png
-//   } else {
-//     set image source to have .jpg
-//   }
-//   set image id
-//   append it to the parent element
-// }
+function renderImages (current) {
+  var imgSet = document.createElement('img');
+  // set image attributes; they're not all the same file extension
+  if (current === 'usb') {
+    imgSet.setAttribute('src', 'images/' + current + '.gif');
+  } else if (current === 'sweep') {
+    imgSet.setAttribute('src', 'images/' + current + '.png');
+  } else {
+    imgSet.setAttribute('src', 'images/' + current + '.jpg');
+  }
+  imgSet.setAttribute('id', current);
+  imagesParent.append(imgSet);
+}
 
 
 // * Function to set up the list to display the results
@@ -151,12 +151,15 @@ function checkPrevious(image) {
 
 
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
-// function start () {
-//   // generate 3 non-duplicate, non-repeating from previous images
-//   set array with images by calling generateRandomProduct();
-//   render all 3 to screen by calling renderImages();
-// }
-
+function start () {
+  // generate 3 non-duplicate, non-repeating from previous images
+  currentImages = imageGroupGenerator(previousImages);
+  console.log('======current images=======================');
+  console.log(currentImages);
+  console.log('=============================');
+  renderImages(currentImages);
+}
+start();
 // =========================================
 // ===CLICK HANDLER AND RELATED FUNCTIONS===
 // =========================================
