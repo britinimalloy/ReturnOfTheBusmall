@@ -5,7 +5,7 @@
 
 * As a member of the marketing research team, I want to know how many times a particular item was shown to use in my market research.
 
-* As a member of the marketing research team, I want to know how many times an item was shown to use in my market research.
+* As a member of the marketing research team, I want to know how many times an item was clicked to use in my market research.
 
 * As a member of the marketing research team, I want a small set of (3) images to be displayed for the focus group user to choose from.
 
@@ -15,16 +15,17 @@
 
 * As a member of the marketing research team, I want these images to be chosen at random so there's no unfair biasing.
 
+* As a member of the marketing research team, I want there to be no repeats from one set of images to another.
+
 ### Developer
-* As a developer I want the images to be in a nice layout to make it easier for the customer to click on the image they mean to click on.
+* As a developer I want the images to be in a nice layout to make it easier for the customer to click on the image they mean to click on. This means images of the same size with some spacing between them.
 
 * As a developer I want the code to be clean and reusable so as to not have to repeat code.
 
-* As a developer I want to cut the user off at a particular number of clicks so I can control how many times they can click through sets.
+* As a developer I want to cut the user off at 25 clicks so I can control how many times they can click through sets.
 
-* As a developer I want to make sure the user gets their results displayed neatly and in an easy-to-read graph so they can see how they chose.
+* As a developer I want to make sure the user gets their results displayed neatly and in an easy-to-read list so they can see how they chose.
 
-* As a developer I want there to be no repeats from one set of images to another.
 
 ### Focus Group User
 * As a user I want clear instructions on what to do so I don't get confused.
