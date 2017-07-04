@@ -80,27 +80,36 @@
 //   return timesShown;
 // }
 
-// =====================================
-// ======IMAGE RENDERING FUNCTIONS======
-// =====================================
-// Function to set image attributes, and they don't all have the same file extension; then create image element and append these to the parent element from index
-function setImageAttribute (namesOfProducts) {
-  //
-}
 
 // * Function to render array of current images to screen
-function renderCurrentImages () {
-  set the parent element by getting element by id from index
-  append the list to the parent element
+// function renderImages (namesOfProducts) {
+//   variable, create image element
+//   // set image attributes; they're not all the same file extension
+//   if (usb) {
+//     set image source to have .gif
+//   } else if (sweep) {
+//     set image source to have .png
+//   } else {
+//     set image source to have .jpg
+//   }
+//   set image id
+//   append it to the parent element
+// }
 
-  step through the productObject to pull out each product and its properties
-  for (keys in productObject) {
-    some variable1 to hold each products name and properties
-    some variable2 to create the li element to hold variable1 s data
-    set variable2 s text content to be variable1
-    append variable2 as child to parent element
-  }
-}
+
+// Function to set up the list to display the results
+// function setUpList () {
+//   set the parent element by getting element by id from index
+//   append the list to the parent element
+//
+//   step through the productObject to pull out each product and its properties
+//   for (keys in productObject) {
+//     some variable1 to hold each products name and properties
+//     some variable2 to create the li element to hold variable1 s data
+//     set variable2 s text content to be variable1
+//     append variable2 as child to parent element
+//   }
+// }
 
 
 // =====================================
