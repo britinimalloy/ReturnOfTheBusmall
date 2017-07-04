@@ -3,12 +3,16 @@
 // ================================
 // ========VARIABLES===============
 // ================================
-// namesOfProducts []; // names of the products
+var namesOfProducts = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']; // names of the products
+var imageA = '';
+var imageB = '';
+var imageC = '';
 // productObject {}; // object to store the product objects
 // timesClicked; // number of times a product has been clicked
 // timesShown; // number of times a product has been shown
-// currentProducts []; // current products array
-// previousProducts []; // previous products array
+var currentImages = []; // current products array
+//var previousImages = []; // previous products array
+var previousImages = ['bag', 'chair', 'water-can'];
 // userClicks; // number of times the user has clicked
 // maxClicks; // total number of clicks the user is allowed
 // var ____ = document.getElementById(''); // parent element on index where the images will be displayed
@@ -46,32 +50,66 @@
 
 
 // * Make a function to choose a random image
-// function generateRandomProduct () {
-//   some variable = lots of math including .random(), .floor(), and array.length
-//   return some variable;
-// }
+function generateRandomImage () {
+  var randomImage = Math.floor(Math.random() * namesOfProducts.length);
+  console.log(randomImage);
+  return namesOfProducts[randomImage];
+}
+//generateRandomImage();
 
 // * Each set of images should contain no duplicates so make an array to hold current images to ensure that each image chosen at random doesn't duplicate within its group
 
 // * Each set should have 3 different images from the previous set of images
+function imageGroupGenerator (previous) {
+  console.log('======previous to start=======================');
+  console.log(previous);
+  imageA = generateRandomImage();
+  checkCurrent(imageA);
+
+  imageB = generateRandomImage();
+  checkCurrent(imageB);
+
+  imageC = generateRandomImage();
+  checkCurrent(imageC);
+
+  console.log('======images randomly chosen===================');
+  console.log(imageA + ' , ' + imageB + ' , ' + imageC);
+  console.log('======current images=======================');
+  console.log(currentImages);
+  console.log('======previous images=======================');
+  console.log(previousImages);
+  console.log('======previous now=======================');
+  previousImages = currentImages;
+  console.log(previousImages);
+  console.log('======current now=======================');
+  currentImages = [];
+  console.log(currentImages);
+}
+
+console.log('======previous to start=======================');
+console.log(previousImages);
+console.log('=============================');
+imageGroupGenerator(previousImages);
 
 // * Function to handle comparison of randomly generated image to images in current array and a function to compare to previous array. This will be done using an if/else statement to first check against any in current array then also in previous array. If it matches any in either array, a call will be put in to the random image generator function to get new image and comparison will start all over. If it doesn't match any in current or previous array, it will be pushed into current array.
-// * function checkCurrent (variable) {
-//   if (it matches something in the current array) {
-//     then generateRandomProduct() for new random image
-//   } else {
-//     call checkPrevious(variable);
-//   }
-//   set in currentProducts[];
-// }
+function checkCurrent (image) {
+  if (currentImages.includes(image)) {
+    image = generateRandomImage();
+  } else {
+    checkPrevious(image);
+  }
+  currentImages.push(image);
+  //console.log(currentImages);
+}
 
-// * function checkPrevious(variable) {
-//   if (it matches something in previous array) {
-//     then generateRandomProduct() for new random image
-//   } else {
-//     return variable;
-//   }
-// }
+function checkPrevious(image) {
+  if (previousImages.includes(image)) {
+    image = generateRandomImage();
+  } else {
+    //console.log(image);
+    return image;
+  }
+}
 
 
 // * Function to update number of times an image is shown
