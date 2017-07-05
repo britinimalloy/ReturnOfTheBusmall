@@ -11,8 +11,8 @@ var imageC = '';
 // timesClicked; // number of times a product has been clicked
 // timesShown; // number of times a product has been shown
 var currentImages = []; // current products array
-//var previousImages = []; // previous products array
-var previousImages = ['bag', 'chair', 'water-can'];
+var previousImages = []; // previous products array
+// var previousImages = ['bag', 'chair', 'water-can'];
 // userClicks; // number of times the user has clicked
 // maxClicks; // total number of clicks the user is allowed
 var imagesParent = document.getElementById('images'); // parent element on index where the images will be displayed
@@ -60,9 +60,9 @@ function generateRandomImage () {
 // * Each set of images should contain no duplicates so make an array to hold current images to ensure that each image chosen at random doesn't duplicate within its group
 
 // * Each set should have 3 different images from the previous set of images
-function imageGroupGenerator (previous) {
-  console.log('======previous to start=======================');
-  console.log(previous);
+function imageGroupGenerator (previousImages) {
+  // console.log('======previous to start=======================');
+  // console.log(previous);
   imageA = generateRandomImage();
   checkCurrent(imageA);
 
@@ -72,23 +72,23 @@ function imageGroupGenerator (previous) {
   imageC = generateRandomImage();
   checkCurrent(imageC);
 
-  console.log('======images randomly chosen===================');
-  console.log(imageA + ' , ' + imageB + ' , ' + imageC);
-  console.log('======current images=======================');
-  console.log(currentImages);
-  console.log('======previous images=======================');
-  console.log(previousImages);
-  console.log('======previous now=======================');
+  // console.log('=/=/=images randomly chosen=/=/=/=/=');
+  // console.log(imageA + ' , ' + imageB + ' , ' + imageC);
+  // console.log('======current images=======================');
+  // console.log(currentImages);
+  // console.log('======previous images=======================');
+  // console.log(previousImages);
+  // console.log('======previous now=======================');
   previousImages = currentImages;
   console.log(previousImages);
-  console.log('======current now=======================');
-  currentImages = [];
-  console.log(currentImages);
+  // console.log('======current now=======================');
+  // currentImages = [];
+  // console.log(currentImages);
 }
 
-console.log('======previous to start=======================');
-console.log(previousImages);
-console.log('=============================');
+// console.log('======previous to start=======================');
+// console.log(previousImages);
+// console.log('=============================');
 //imageGroupGenerator(previousImages);
 
 // * Function to handle comparison of randomly generated image to images in current array and a function to compare to previous array. This will be done using an if/else statement to first check against any in current array then also in previous array. If it matches any in either array, a call will be put in to the random image generator function to get new image and comparison will start all over. If it doesn't match any in current or previous array, it will be pushed into current array.
@@ -120,17 +120,17 @@ function checkPrevious(image) {
 
 // var imagesParent = document.getElementById('images');
 // * Function to render array of current images to screen
-function renderImages (current) {
+function renderImages (image) {
   var imgSet = document.createElement('img');
   // set image attributes; they're not all the same file extension
-  if (current === 'usb') {
-    imgSet.setAttribute('src', 'images/' + current + '.gif');
-  } else if (current === 'sweep') {
-    imgSet.setAttribute('src', 'images/' + current + '.png');
+  if (image === 'usb') {
+    imgSet.setAttribute('src', 'img/' + image + '.gif');
+  } else if (image === 'sweep') {
+    imgSet.setAttribute('src', 'img/' + image + '.png');
   } else {
-    imgSet.setAttribute('src', 'images/' + current + '.jpg');
+    imgSet.setAttribute('src', 'img/' + image + '.jpg');
   }
-  imgSet.setAttribute('id', current);
+  imgSet.setAttribute('id', image);
   imagesParent.append(imgSet);
 }
 
@@ -153,11 +153,13 @@ function renderImages (current) {
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
 function start () {
   // generate 3 non-duplicate, non-repeating from previous images
-  currentImages = imageGroupGenerator(previousImages);
+  previousImages = imageGroupGenerator(previousImages);
   console.log('======current images=======================');
   console.log(currentImages);
   console.log('=============================');
-  renderImages(currentImages);
+  renderImages(imageA);
+  renderImages(imageB);
+  renderImages(imageC);
 }
 start();
 // =========================================

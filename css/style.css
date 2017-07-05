@@ -3,3 +3,9 @@
 /* Make images have some space between them for ease of clicking */
 
 /* Display images in side-by-side format*/
+#images img {
+  height: 225px;
+  width: 17%;
+  margin: 35px;
+  vertical-align: middle;
+}
