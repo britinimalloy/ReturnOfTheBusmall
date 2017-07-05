@@ -120,6 +120,7 @@ function start () {
   renderImages(imageB);
   renderImages(imageC);
   console.log(userClicks);
+  setProductState(productObject, currentImages, previousImages, userClicks);
 }
 start();
 
@@ -224,7 +225,19 @@ function displayChart () {
   //get it out
   //unstringify it
   //return unstringified data
-
+function setProductState (productObject, currentImages, previousImages, userClicks) {
+  var productState = {
+    productObject: productObject,
+    currentImages: currentImages,
+    previousImages: previousImages,
+    userClicks: userClicks
+  };
+  var stringifiedProductState = JSON.stringify(productState);
+  localStorage.setItem('productState',stringifiedProductState);
+  var storageProductState = localStorage.getItem('productState');
+  var parsedProductState = JSON.parse(storageProductState);
+  return parsedProductState;
+}
 // function to get the data
   //get it out
   //unstringify it
