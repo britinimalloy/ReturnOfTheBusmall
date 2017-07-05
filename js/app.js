@@ -14,7 +14,7 @@ var userClicks = 0; // number of times the user has clicked
 var maxClicks = 24; // total number of clicks the user is allowed
 var imagesParent = document.getElementById('images'); // parent element on index where the images will be displayed
 var resultsList = document.createElement('ul'); // create list element to display results list on index
-var name = [];
+var names = [];
 var shown = [];
 var clicks = [];
 
@@ -161,7 +161,7 @@ function picClickHandler (event) {
 function displayArrays () {
   for (var key in productObject) {
     var product = productObject[key];
-    name.push(product.name);
+    names.push(product.name);
     shown.push(product.timesShown);
     clicks.push(product.timesClicked);
   }
@@ -177,7 +177,7 @@ function displayChart () {
     type: 'bar',
 
     data: {
-      labels: name, // named for the array to display the info
+      labels: names, // named for the array to display the info
       datasets: [{
         label: 'Times product was shown',
         backgroundColor: 'rgb(255, 99, 132)',
