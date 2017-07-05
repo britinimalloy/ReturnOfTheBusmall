@@ -11,6 +11,8 @@
 * technical requirements
 * draw this out
 
+### Day 2:
+* pseudocoding
+* get coding
 * #### Still to do:
-* start pseudocoding
-* get coding!
+* finish coding!
