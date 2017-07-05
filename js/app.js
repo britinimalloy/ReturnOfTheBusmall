@@ -117,6 +117,8 @@ function start () {
   console.log(userClicks);
 }
 start();
+
+
 // =========================================
 // ===CLICK HANDLER AND RELATED FUNCTIONS===
 // =========================================
@@ -146,3 +148,20 @@ function picClickHandler (event) {
     start();
   }
 }
+
+
+// =========================================
+// ==================CHART==================
+// =========================================
+// function () { // to set up arrays containing information needing to be displayed by chart
+//   step through the productObject using the keys
+//   put the name, number of clicks, and number of times shown into arrays
+// }
+
+// function () { // to set up canvas and draw the results chart
+//   first, get the element id from index to tell the chart where to be drawn
+//   get context for the canvas and put it in a variable
+//   call the previous function that set up the arrays of display information
+//
+//   create new bar chart and pass in the canvas information, all the labels and data that need to be displayed, and colors for the bars (there are only 2 different ones as all thats being displayed is times shown and times clicked)
+// }
