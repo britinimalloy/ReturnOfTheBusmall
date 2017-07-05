@@ -28,6 +28,7 @@ function Product (name) {
   this.timesShown = 0;
   this.timesClicked = 0;
 }
+// need to set this in local storage
 
 
 // ================================
@@ -68,7 +69,7 @@ function imageGroupGenerator (previousImages) {
     imageC = generateRandomImage();
   }
   currentImages.push(imageC);
-
+    // need to set currentImages in local storage
   console.log(previousImages);
   previousImages = currentImages;
   console.log(previousImages);
@@ -114,6 +115,7 @@ function setUpList () {
 function start () {
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
+  // need to set previousImages in local storage
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
@@ -136,18 +138,21 @@ function picClickHandler (event) {
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
+      // need to set timesShown in local storage
     }
 
     currentImages = [];
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
+    // need to set timesClicked in local storage
 
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
 
     userClicks++;
+    // need to set userClicks in local storage
 
     start();
   }
@@ -173,7 +178,7 @@ function displayChart () {
   var paint = canvas.getContext('2d');
   displayArrays();
 
-  myChart = new Chart(paint, {
+  var myChart = new Chart(paint, {
     type: 'bar',
 
     data: {
@@ -202,3 +207,43 @@ function displayChart () {
     }
   });
 }
+
+// =========================================
+// ================STORAGE==================
+// =========================================
+// Persistence of data
+// When we persist data, we need to be able to do four things with it:
+// create the data - setItem in localStorage
+// retrieve it
+// update it - setItem in localStorage
+// delete it
+
+// first, create a function take all the information that must be stored and shove it all in an object
+  //stringify that object
+  //set it in local storage
+  //get it out
+  //unstringify it
+  //return unstringified data
+
+// function to get the data
+  //get it out
+  //unstringify it
+  //return unstringified data
+
+// function to delete the data
+  //remove item from local storage
+
+// function to clear storage
+  //local storage clear
+
+// function to setUserClicks
+
+// function to getUserClicks
+
+// function to setCurrentImages
+
+// function to getCurrentImages
+
+// function to setPreviousImages
+
+// function to getPreviousImages
