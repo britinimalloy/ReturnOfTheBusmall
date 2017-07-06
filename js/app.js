@@ -7,13 +7,13 @@ var namesOfProducts = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbl
 var imageA = '';
 var imageB = '';
 var imageC = '';
-var productObject = {}; // object to store the product objects
-var currentImages = []; // current products array
-var previousImages = []; // previous products array
-var userClicks = 0; // number of times the user has clicked
-var maxClicks = 24; // total number of clicks the user is allowed
-var imagesParent = document.getElementById('images'); // parent element on index where the images will be displayed
-var resultsList = document.createElement('ul'); // create list element to display results list on index
+var productObject = {};
+var currentImages = [];
+var previousImages = [];
+var userClicks = 0;
+var maxClicks = 24;
+var imagesParent = document.getElementById('images');
+var resultsList = document.createElement('ul');
 var names = [];
 var shown = [];
 var clicks = [];
@@ -39,10 +39,9 @@ function Product (name) {
 // ================================
 // ========FUNCTIONS===============
 // ================================
-// step through the product names array and create the object
+// step through the product names array and create the object, then put it in another object
 function createProductObjects () {
   for (var i = 0; i < namesOfProducts.length; i++) {
-    //create each product object and put it in the productObject {}
     productObject[namesOfProducts[i]] = new Product (namesOfProducts[i]);
   }
 }
@@ -75,7 +74,6 @@ function imageGroupGenerator (previousImages) {
   }
   currentImages.push(imageC);
 
-  //setProductState (productObject, currentImages, previousImages, userClicks);
   previousImages = currentImages;
   return previousImages;
 }
@@ -119,7 +117,6 @@ function setUpList () {
 function start () {
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
-  //setProductState (productObject, currentImages, previousImages, userClicks);
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
@@ -142,14 +139,12 @@ function picClickHandler (event) {
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
-      setProductState (productObject, currentImages, previousImages, userClicks);
     }
 
     currentImages = [];
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
-    setProductState (productObject, currentImages, previousImages, userClicks);
 
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);

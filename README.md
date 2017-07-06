@@ -4,6 +4,11 @@
 * Erica Winberry
 * Stephanie Lingwood
 * James Woodson
+* Kim Furuya
+* Don Pham
+#### A bit from:
+* Drew Biehle
+* Alisha Broxton
 
 ### Day 1:
 * repo/initial commit have been performed
