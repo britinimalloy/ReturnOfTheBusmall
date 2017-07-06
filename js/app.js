@@ -115,10 +115,6 @@ function setUpList () {
 
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
 function start () {
-  // if there's data in storage, pull it out
-  if (!productState) {
-    getProductState ();
-  }
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
   // need to set previousImages in local storage
@@ -126,7 +122,12 @@ function start () {
   renderImages(imageB);
   renderImages(imageC);
   console.log(userClicks);
-  setProductState(productObject, currentImages, previousImages, userClicks);
+}
+  // if there's data in storage, pull it out
+if (!productState) {
+  // console.log(productState.currentImages);
+  // console.log(currentImages);
+  productState = getProductState();
 }
 start();
 
@@ -240,9 +241,9 @@ function setProductState (productObject, currentImages, previousImages, userClic
   };
   var stringifiedProductState = JSON.stringify(productState);
   localStorage.setItem('productState',stringifiedProductState);
-  // var storageProductState = localStorage.getItem('productState');
-  // var parsedProductState = JSON.parse(storageProductState);
-  // return parsedProductState;
+  storageProductState = localStorage.getItem('productState');
+  var parsedProductState = JSON.parse(storageProductState);
+  return parsedProductState;
 }
 // function to get the data
   //get it out
