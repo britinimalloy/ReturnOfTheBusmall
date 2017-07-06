@@ -2,6 +2,8 @@
 
 ### Helpers:
 * Erica Winberry
+* Stephanie Lingwood
+* James Woodson
 
 ### Day 1:
 * repo/initial commit have been performed

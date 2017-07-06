@@ -17,6 +17,8 @@ var resultsList = document.createElement('ul'); // create list element to displa
 var names = [];
 var shown = [];
 var clicks = [];
+var productState = null;
+var storageProductState;
 
 
 // ================================
@@ -113,6 +115,10 @@ function setUpList () {
 
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
 function start () {
+  // if there's data in storage, pull it out
+  if (!productState) {
+    getProductState ();
+  }
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
   // need to set previousImages in local storage
@@ -226,7 +232,7 @@ function displayChart () {
   //unstringify it
   //return unstringified data
 function setProductState (productObject, currentImages, previousImages, userClicks) {
-  var productState = {
+  productState = {
     productObject: productObject,
     currentImages: currentImages,
     previousImages: previousImages,
@@ -234,14 +240,20 @@ function setProductState (productObject, currentImages, previousImages, userClic
   };
   var stringifiedProductState = JSON.stringify(productState);
   localStorage.setItem('productState',stringifiedProductState);
-  var storageProductState = localStorage.getItem('productState');
-  var parsedProductState = JSON.parse(storageProductState);
-  return parsedProductState;
+  // var storageProductState = localStorage.getItem('productState');
+  // var parsedProductState = JSON.parse(storageProductState);
+  // return parsedProductState;
 }
 // function to get the data
   //get it out
   //unstringify it
   //return unstringified data
+
+function getProductState () {
+  storageProductState = localStorage.getItem('productState');
+  var parsedProductState = JSON.parse(storageProductState);
+  return parsedProductState;
+}
 
 // function to delete the data
   //remove item from local storage
