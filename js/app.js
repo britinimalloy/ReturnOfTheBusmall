@@ -248,6 +248,7 @@ function setProductState (productObject, currentImages, previousImages, userClic
   //get it out
   //unstringify it
   //return unstringified data
+
 function getProductState () {
   storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
