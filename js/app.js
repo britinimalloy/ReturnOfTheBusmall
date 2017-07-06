@@ -1,5 +1,5 @@
 'use strict';
-
+console.log('starting app.js');
 // ================================
 // ========VARIABLES===============
 // ================================
@@ -21,6 +21,13 @@ var productState = null;
 var storageProductState;
 
 
+// if there's data in storage, pull it out
+if (!productState) {
+// console.log(productState.currentImages);
+// console.log(currentImages);
+  productState = getProductState();
+}
+console.log(productState);
 // ================================
 // ========CONSTRUCTOR=============
 // ================================
@@ -124,12 +131,7 @@ function start () {
   renderImages(imageC);
   console.log(userClicks);
 }
-  // if there's data in storage, pull it out
-if (!productState) {
-  // console.log(productState.currentImages);
-  // console.log(currentImages);
-  productState = getProductState();
-}
+
 start();
 
 
