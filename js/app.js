@@ -17,6 +17,8 @@ var resultsList = document.createElement('ul'); // create list element to displa
 var names = [];
 var shown = [];
 var clicks = [];
+var productState = null;
+//var storageProductState;
 
 
 // ================================
@@ -28,6 +30,7 @@ function Product (name) {
   this.timesShown = 0;
   this.timesClicked = 0;
 }
+// need to set this in local storage
 
 
 // ================================
@@ -68,7 +71,7 @@ function imageGroupGenerator (previousImages) {
     imageC = generateRandomImage();
   }
   currentImages.push(imageC);
-
+    // need to set currentImages in local storage
   console.log(previousImages);
   previousImages = currentImages;
   console.log(previousImages);
@@ -112,12 +115,18 @@ function setUpList () {
 
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
 function start () {
+  // if there's data in storage, pull it out
+  if (!productState) {
+    getProductState ();
+  }
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
+  // need to set previousImages in local storage
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
   console.log(userClicks);
+  setProductState(productObject, currentImages, previousImages, userClicks);
 }
 start();
 
@@ -136,18 +145,21 @@ function picClickHandler (event) {
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
+      // need to set timesShown in local storage
     }
 
     currentImages = [];
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
+    // need to set timesClicked in local storage
 
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
 
     userClicks++;
+    // need to set userClicks in local storage
 
     start();
   }
@@ -173,7 +185,7 @@ function displayChart () {
   var paint = canvas.getContext('2d');
   displayArrays();
 
-  myChart = new Chart(paint, {
+  var myChart = new Chart(paint, {
     type: 'bar',
 
     data: {
@@ -202,3 +214,60 @@ function displayChart () {
     }
   });
 }
+
+// =========================================
+// ================STORAGE==================
+// =========================================
+// Persistence of data
+// When we persist data, we need to be able to do four things with it:
+// create the data - setItem in localStorage
+// retrieve it
+// update it - setItem in localStorage
+// delete it
+
+// first, create a function take all the information that must be stored and shove it all in an object
+  //stringify that object
+  //set it in local storage
+  //get it out
+  //unstringify it
+  //return unstringified data
+function setProductState (productObject, currentImages, previousImages, userClicks) {
+  productState = {
+    productObject: productObject,
+    currentImages: currentImages,
+    previousImages: previousImages,
+    userClicks: userClicks
+  };
+  var stringifiedProductState = JSON.stringify(productState);
+  localStorage.setItem('productState',stringifiedProductState);
+  var storageProductState = localStorage.getItem('productState');
+  var parsedProductState = JSON.parse(storageProductState);
+  return parsedProductState;
+}
+// function to get the data
+  //get it out
+  //unstringify it
+  //return unstringified data
+function getProductState () {
+  var storageProductState = localStorage.getItem('productState');
+  var parsedProductState = JSON.parse(storageProductState);
+  return parsedProductState;
+}
+
+// function to delete the data
+  //remove item from local storage
+
+// function to clear storage
+  //local storage clear
+
+// function to setUserClicks
+
+// function to getUserClicks
+
+// function to setCurrentImages
+
+// function to getCurrentImages
+
+// function to setPreviousImages
+
+// function to getPreviousImages
