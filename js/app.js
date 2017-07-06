@@ -1,5 +1,5 @@
 'use strict';
-console.log('starting app.js');
+
 // ================================
 // ========VARIABLES===============
 // ================================
@@ -7,13 +7,13 @@ var namesOfProducts = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbl
 var imageA = '';
 var imageB = '';
 var imageC = '';
-var productObject = {}; // object to store the product objects
-var currentImages = []; // current products array
-var previousImages = []; // previous products array
-var userClicks = 0; // number of times the user has clicked
-var maxClicks = 24; // total number of clicks the user is allowed
-var imagesParent = document.getElementById('images'); // parent element on index where the images will be displayed
-var resultsList = document.createElement('ul'); // create list element to display results list on index
+var productObject = {};
+var currentImages = [];
+var previousImages = [];
+var userClicks = 0;
+var maxClicks = 24;
+var imagesParent = document.getElementById('images');
+var resultsList = document.createElement('ul');
 var names = [];
 var shown = [];
 var clicks = [];
@@ -23,11 +23,8 @@ var storageProductState;
 
 // if there's data in storage, pull it out
 if (!productState) {
-// console.log(productState.currentImages);
-// console.log(currentImages);
   productState = getProductState();
 }
-console.log(productState);
 // ================================
 // ========CONSTRUCTOR=============
 // ================================
@@ -37,16 +34,14 @@ function Product (name) {
   this.timesShown = 0;
   this.timesClicked = 0;
 }
-// need to set this in local storage
 
 
 // ================================
 // ========FUNCTIONS===============
 // ================================
-// step through the product names array and create the object
+// step through the product names array and create the object, then put it in another object
 function createProductObjects () {
   for (var i = 0; i < namesOfProducts.length; i++) {
-    //create each product object and put it in the productObject {}
     productObject[namesOfProducts[i]] = new Product (namesOfProducts[i]);
   }
 }
@@ -79,10 +74,7 @@ function imageGroupGenerator (previousImages) {
   }
   currentImages.push(imageC);
 
-  setProductState (productObject, currentImages, previousImages, userClicks);
-  console.log(previousImages);
   previousImages = currentImages;
-  console.log(previousImages);
   return previousImages;
 }
 
@@ -125,11 +117,9 @@ function setUpList () {
 function start () {
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
-  setProductState (productObject, currentImages, previousImages, userClicks);
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
-  console.log(userClicks);
 }
 
 start();
@@ -149,14 +139,12 @@ function picClickHandler (event) {
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
-      setProductState (productObject, currentImages, previousImages, userClicks);
     }
 
     currentImages = [];
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
-    setProductState (productObject, currentImages, previousImages, userClicks);
 
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
@@ -222,19 +210,6 @@ function displayChart () {
 // =========================================
 // ================STORAGE==================
 // =========================================
-// Persistence of data
-// When we persist data, we need to be able to do four things with it:
-// create the data - setItem in localStorage
-// retrieve it
-// update it - setItem in localStorage
-// delete it
-
-// first, create a function take all the information that must be stored and shove it all in an object
-  //stringify that object
-  //set it in local storage
-  //get it out
-  //unstringify it
-  //return unstringified data
 function setProductState (productObject, currentImages, previousImages, userClicks) {
   productState = {
     productObject: productObject,
@@ -244,35 +219,11 @@ function setProductState (productObject, currentImages, previousImages, userClic
   };
   var stringifiedProductState = JSON.stringify(productState);
   localStorage.setItem('productState',stringifiedProductState);
-  // storageProductState = localStorage.getItem('productState');
-  // var parsedProductState = JSON.parse(storageProductState);
-  // return parsedProductState;
+  return;
 }
-// function to get the data
-  //get it out
-  //unstringify it
-  //return unstringified data
 
 function getProductState () {
   storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
   return parsedProductState;
 }
-
-// function to delete the data
-  //remove item from local storage
-
-// function to clear storage
-  //local storage clear
-
-// function to setUserClicks
-
-// function to getUserClicks
-
-// function to setCurrentImages
-
-// function to getCurrentImages
-
-// function to setPreviousImages
-
-// function to getPreviousImages

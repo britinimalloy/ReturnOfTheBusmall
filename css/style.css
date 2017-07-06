@@ -1,11 +1,23 @@
-/* Make images the same size for ease of clicking */
+* {
+  font-family: sans-serif;
+}
 
-/* Make images have some space between them for ease of clicking */
+body {
+  background-color: #e8b4dc;
+}
 
-/* Display images in side-by-side format*/
 #images img {
   height: 225px;
   width: 17%;
   margin: 35px;
   vertical-align: middle;
+}
+
+#images img:hover {
+  border: 5px solid #bc42f4;
+  transform: scale(2);
+}
+
+#chart:hover {
+  transform: skewX(20deg);
 }
