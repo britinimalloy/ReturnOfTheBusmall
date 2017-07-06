@@ -71,7 +71,8 @@ function imageGroupGenerator (previousImages) {
     imageC = generateRandomImage();
   }
   currentImages.push(imageC);
-    // need to set currentImages in local storage
+
+  setProductState (productObject, currentImages, previousImages, userClicks);
   console.log(previousImages);
   previousImages = currentImages;
   console.log(previousImages);
@@ -117,7 +118,7 @@ function setUpList () {
 function start () {
   // generate 3 non-duplicate, non-repeating from previous images
   previousImages = imageGroupGenerator(previousImages);
-  // need to set previousImages in local storage
+  setProductState (productObject, currentImages, previousImages, userClicks);
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
@@ -146,21 +147,21 @@ function picClickHandler (event) {
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
-      // need to set timesShown in local storage
+      setProductState (productObject, currentImages, previousImages, userClicks);
     }
 
     currentImages = [];
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
-    // need to set timesClicked in local storage
+    setProductState (productObject, currentImages, previousImages, userClicks);
 
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
     imagesParent.removeChild(imagesParent.lastChild);
 
     userClicks++;
-    // need to set userClicks in local storage
+    setProductState (productObject, currentImages, previousImages, userClicks);
 
     start();
   }
@@ -241,9 +242,9 @@ function setProductState (productObject, currentImages, previousImages, userClic
   };
   var stringifiedProductState = JSON.stringify(productState);
   localStorage.setItem('productState',stringifiedProductState);
-  storageProductState = localStorage.getItem('productState');
-  var parsedProductState = JSON.parse(storageProductState);
-  return parsedProductState;
+  // storageProductState = localStorage.getItem('productState');
+  // var parsedProductState = JSON.parse(storageProductState);
+  // return parsedProductState;
 }
 // function to get the data
   //get it out
