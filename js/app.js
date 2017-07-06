@@ -18,7 +18,7 @@ var names = [];
 var shown = [];
 var clicks = [];
 var productState = null;
-//var storageProductState;
+var storageProductState;
 
 
 // ================================
@@ -240,16 +240,16 @@ function setProductState (productObject, currentImages, previousImages, userClic
   };
   var stringifiedProductState = JSON.stringify(productState);
   localStorage.setItem('productState',stringifiedProductState);
-  var storageProductState = localStorage.getItem('productState');
-  var parsedProductState = JSON.parse(storageProductState);
-  return parsedProductState;
+  // var storageProductState = localStorage.getItem('productState');
+  // var parsedProductState = JSON.parse(storageProductState);
+  // return parsedProductState;
 }
 // function to get the data
   //get it out
   //unstringify it
   //return unstringified data
 function getProductState () {
-  var storageProductState = localStorage.getItem('productState');
+  storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
   return parsedProductState;
 }
