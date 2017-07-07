@@ -24,7 +24,8 @@ var storageProductState;
 // ================================
 // ===========MAIN=================
 // ================================
-// Main function to first check if there's data in storage; if there is, pull it out and initialize the variables with the data in storage
+// Main function to first check if there's data in storage; if there is, pull
+// it out and initialize the variables with the data in storage
 function main () {
   if (!productState) {
     console.log('hello');
@@ -42,12 +43,13 @@ function main () {
     console.log(userClicks);
     console.log('=====================');
     console.log('=====================');
-  } else {
-    previousImages = imageGroupGenerator(previousImages);
-    renderImages(imageA);
-    renderImages(imageB);
-    renderImages(imageC);
-  }
+  } 
+  previousImages = imageGroupGenerator(previousImages);
+  renderImages(imageA);
+  renderImages(imageB);
+  renderImages(imageC);
+  createProductObjects();
+  imagesParent.addEventListener ('click', picClickHandler);
 }
 main();
 // ================================
@@ -85,7 +87,6 @@ function createProductObjects () {
     productObject[namesOfProducts[i]] = new Product (namesOfProducts[i]);
   }
 }
-createProductObjects();
 
 
 // * function to choose a random image
@@ -157,7 +158,6 @@ function setUpList () {
 // =========================================
 // ===CLICK HANDLER AND RELATED FUNCTIONS===
 // =========================================
-imagesParent.addEventListener ('click', picClickHandler);
 
 // * ClickHandler function to handle clicking of image, record, then display results and remove click handler if at max clicks:
 function picClickHandler (event) {
@@ -260,5 +260,6 @@ function setProductState (productObject, currentImages, previousImages, userClic
 function getProductState () {
   storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
+  console.log("saved state: ", parsedProductState);
   return parsedProductState;
 }
