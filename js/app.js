@@ -43,7 +43,10 @@ function main () {
     console.log('=====================');
     console.log('=====================');
   } else {
-    start();
+    previousImages = imageGroupGenerator(previousImages);
+    renderImages(imageA);
+    renderImages(imageB);
+    renderImages(imageC);
   }
 }
 main();
@@ -62,19 +65,18 @@ function Product (name) {
 // ========FUNCTIONS===============
 // ================================
 // * start function to get the ball rolling with generating the random images and rendering them to the screen
-function start () {
-  createProductObjects();
-  //productObject = {}; // set this based off what's in storage
-  // currentImages = []; // set this based off what's in storage
-  // previousImages = []; // set this based off what's in storage
-  //userClicks = 0; // set this based off what's in storage
-
-  // generate 3 non-duplicate, non-repeating from previous images
-  previousImages = imageGroupGenerator(previousImages);
-  renderImages(imageA);
-  renderImages(imageB);
-  renderImages(imageC);
-}
+// function start () {
+//   //productObject = {}; // set this based off what's in storage
+//   // currentImages = []; // set this based off what's in storage
+//   // previousImages = []; // set this based off what's in storage
+//   //userClicks = 0; // set this based off what's in storage
+//
+//   // generate 3 non-duplicate, non-repeating from previous images
+//   previousImages = imageGroupGenerator(previousImages);
+//   renderImages(imageA);
+//   renderImages(imageB);
+//   renderImages(imageC);
+// }
 
 
 // step through the product names array and create the object, then put it in another object
@@ -83,7 +85,7 @@ function createProductObjects () {
     productObject[namesOfProducts[i]] = new Product (namesOfProducts[i]);
   }
 }
-//createProductObjects();
+createProductObjects();
 
 
 // * function to choose a random image
@@ -185,7 +187,8 @@ function picClickHandler (event) {
     setProductState (productObject, currentImages, previousImages, userClicks);
     console.log(productState);
 
-    start();
+    main();
+    //start();
   }
 }
 
