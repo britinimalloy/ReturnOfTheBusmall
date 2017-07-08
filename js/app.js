@@ -17,35 +17,77 @@ var resultsList = document.createElement('ul');
 var names = [];
 var shown = [];
 var clicks = [];
-var productState = null;
+var productState = getProductState();
 var storageProductState;
 
 
-// if there's data in storage, pull it out
-if (!productState) {
-  productState = getProductState();
+// ================================
+// ===========MAIN=================
+// ================================
+// Main function to first check if there's data in storage; if there is, pull
+// it out and initialize the variables with the data in storage
+function main () {
+  if (!productState) {
+    console.log('hello');
+    productState = getProductState();
+    productObject = productObject;
+    currentImages = currentImages;
+    previousImages = previousImages;
+    userClicks = userClicks;
+    console.log('=====================');
+    console.log('=====from main()=====');
+    console.log(productState);
+    console.log(productObject);
+    console.log(currentImages);
+    console.log(previousImages);
+    console.log(userClicks);
+    console.log('=====================');
+    console.log('=====================');
+  } 
+  previousImages = imageGroupGenerator(previousImages);
+  renderImages(imageA);
+  renderImages(imageB);
+  renderImages(imageC);
+  createProductObjects();
+  imagesParent.addEventListener ('click', picClickHandler);
 }
+main();
 // ================================
 // ========CONSTRUCTOR=============
 // ================================
 function Product (name) {
   this.name = name;
-  this.image = 'img/' + name + '.jpg';
-  this.timesShown = 0;
-  this.timesClicked = 0;
+  this.image = 'img/' + name + '.jpg'; // function to set correct file extension
+  this.timesShown = 0; // set this based off what's in storage
+  this.timesClicked = 0; // set this based off what's in storage
 }
 
 
 // ================================
 // ========FUNCTIONS===============
 // ================================
+// * start function to get the ball rolling with generating the random images and rendering them to the screen
+// function start () {
+//   //productObject = {}; // set this based off what's in storage
+//   // currentImages = []; // set this based off what's in storage
+//   // previousImages = []; // set this based off what's in storage
+//   //userClicks = 0; // set this based off what's in storage
+//
+//   // generate 3 non-duplicate, non-repeating from previous images
+//   previousImages = imageGroupGenerator(previousImages);
+//   renderImages(imageA);
+//   renderImages(imageB);
+//   renderImages(imageC);
+// }
+
+
 // step through the product names array and create the object, then put it in another object
 function createProductObjects () {
   for (var i = 0; i < namesOfProducts.length; i++) {
     productObject[namesOfProducts[i]] = new Product (namesOfProducts[i]);
   }
 }
-createProductObjects();
+
 
 // * function to choose a random image
 function generateRandomImage () {
@@ -73,9 +115,9 @@ function imageGroupGenerator (previousImages) {
     imageC = generateRandomImage();
   }
   currentImages.push(imageC);
+  console.log(currentImages);
 
-  previousImages = currentImages;
-  return previousImages;
+  return currentImages;
 }
 
 
@@ -113,22 +155,9 @@ function setUpList () {
 }
 
 
-// * start function to get the ball rolling with generating the random images and rendering them to the screen
-function start () {
-  // generate 3 non-duplicate, non-repeating from previous images
-  previousImages = imageGroupGenerator(previousImages);
-  renderImages(imageA);
-  renderImages(imageB);
-  renderImages(imageC);
-}
-
-start();
-
-
 // =========================================
 // ===CLICK HANDLER AND RELATED FUNCTIONS===
 // =========================================
-imagesParent.addEventListener ('click', picClickHandler);
 
 // * ClickHandler function to handle clicking of image, record, then display results and remove click handler if at max clicks:
 function picClickHandler (event) {
@@ -141,7 +170,10 @@ function picClickHandler (event) {
       productObject[currentImages[i]].timesShown++;
     }
 
+    previousImages = currentImages;
+    console.log(previousImages);
     currentImages = [];
+    console.log(currentImages);
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
@@ -151,9 +183,12 @@ function picClickHandler (event) {
     imagesParent.removeChild(imagesParent.lastChild);
 
     userClicks++;
+    console.log(userClicks);
     setProductState (productObject, currentImages, previousImages, userClicks);
+    console.log(productState);
 
-    start();
+    main();
+    //start();
   }
 }
 
@@ -225,5 +260,6 @@ function setProductState (productObject, currentImages, previousImages, userClic
 function getProductState () {
   storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
+  console.log("saved state: ", parsedProductState);
   return parsedProductState;
 }
