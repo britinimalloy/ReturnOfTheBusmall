@@ -17,7 +17,8 @@ var resultsList = document.createElement('ul');
 var names = [];
 var shown = [];
 var clicks = [];
-var productState;
+var productState = null;
+console.log(productState);
 var storageProductState;
 
 
@@ -27,7 +28,7 @@ var storageProductState;
 // Main function to first check if there's data in storage; if there is, pull
 // it out and initialize the variables with the data in storage
 function main () {
-  if (productState === null) {
+  if (!productState === null) {
     createProductObjects();
     start();
   } else {
@@ -37,6 +38,7 @@ function main () {
     productState = getProductState();
     console.log('productState: ', productState);
     productObject = productState.productObject;
+    //productObject = createProductObjects();
     console.log('productObject.getProductState(): ', productObject);
     // currentImages = getProductState();
     // console.log('productState.currentImages: ', currentImages);
