@@ -162,7 +162,7 @@ function picClickHandler (event) {
     imagesParent.removeEventListener ('click', picClickHandler);
     setUpList();
     displayChart();
-    //clearAllData();
+    clearAllData();
     console.log('productState afer clear all data: ', productState);
   } else {
     for (var i = 0; i < currentImages.length; i++) {
