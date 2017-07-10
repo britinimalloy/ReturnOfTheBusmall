@@ -8,15 +8,26 @@
 	</head>
 	<body>
 		<header>
-			<h1>Hello!</h1>
+			<h1>Hello! Welcome to the BusMall Site!</h1>
 		</header>
 		<main>
 			<section>
-				<p>3 products:</p>
+				<p>Than you for visiting the BusMall site! Please take a moment to take our survey.</p>
+				<div>
+					<h3>Instructions for the survey:</h3>
+					<p>Here is a series of 3 products. Please choose one and click on the image to move on to the next series of images. You get 25 choices, and then with one more click you see these results:
+						<ul>
+							<li>Each possible product</li>
+							<li>How many times each product was randomly shown</li>
+							<li>How many times you clicked each image</li>
+						</ul>
+					</p>
+				</div>
 				<div id="images"></div>
 			</section>
 			<section>
-				<div id="resultList"><p>Here are your results:</p></div>
+				<div><p>Here are your results (once you've chosen 25 times and clicked one additional time), first in list form then in bar chart:</p></div>
+				<div id="resultList"></div>
 			</section>
       <section>
         <canvas id="chart"></canvas>

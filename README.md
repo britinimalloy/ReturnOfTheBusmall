@@ -1,7 +1,6 @@
 # RETURN OF THE BUSMALL:
 
-### Helpers:
-* Erica Winberry
+### With help from:
 * Stephanie Lingwood
 * James Woodson
 * Kim Furuya
@@ -9,6 +8,7 @@
 #### A bit from:
 * Drew Biehle
 * Alisha Broxton
+* Erica Winberry
 
 ### Day 1:
 * repo/initial commit have been performed
@@ -21,5 +21,7 @@
 ### Day 2:
 * pseudocoding
 * get coding
-* #### Still to do:
-* finish coding!
+
+### Day 7:
+* finished coding!
+* (minus some look tweaks and the correct file extension for images in the productObject)
