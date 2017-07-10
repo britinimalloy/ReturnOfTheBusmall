@@ -31,7 +31,11 @@ function main () {
     productState = getProductState();
     productObject = productState.productObject;
     previousImages = productState.previousImages;
-    userClicks = productState.userClicks;
+    if (productState.userClicks <= maxClicks) {
+      userClicks = productState.userClicks;
+    } else {
+      userClicks = 0;
+    }
     start();
   } else {
     createProductObjects();
@@ -148,7 +152,6 @@ function picClickHandler (event) {
     imagesParent.removeEventListener ('click', picClickHandler);
     setUpList();
     displayChart();
-    clearAllData();
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
