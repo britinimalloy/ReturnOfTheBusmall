@@ -6,6 +6,18 @@ body {
   background-color: #e8b4dc;
 }
 
+img {
+  width: 25%;
+}
+
+text {
+  text-align: center;
+}
+
+#images {
+  text-align: center;
+}
+
 #images img {
   height: 225px;
   width: 17%;
@@ -16,6 +28,10 @@ body {
 #images img:hover {
   border: 5px solid #bc42f4;
   transform: scale(1.2);
+}
+
+#resultList:hover {
+  transform: skewY(20deg);
 }
 
 #chart:hover {

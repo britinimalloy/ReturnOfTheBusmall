@@ -18,7 +18,6 @@ var names = [];
 var shown = [];
 var clicks = [];
 var productState;
-console.log(productState);
 var storageProductState;
 
 
@@ -29,28 +28,15 @@ var storageProductState;
 // it out and initialize the variables with the data in storage
 function main () {
   if (localStorage.getItem('productState')) {
-    console.log('hello');
-    console.log('=======================================');
-    console.log('==============from main()==============');
     productState = getProductState();
-    console.log('productState: ', productState);
     productObject = productState.productObject;
-    console.log('productObject.getProductState(): ', productObject);
-    // currentImages = getProductState();
-    // console.log('productState.currentImages: ', currentImages);
     previousImages = productState.previousImages;
-    console.log('productState.previousImages: ', previousImages);
     userClicks = productState.userClicks;
-    console.log('productState.userClicks: ', userClicks);
-    console.log('=======================================');
-    console.log('=======================================');
     start();
   } else {
     createProductObjects();
     start();
   }
-  //createProductObjects();
-  //start();
 }
 main();
 // ================================
@@ -59,8 +45,8 @@ main();
 function Product (name) {
   this.name = name;
   this.image = 'img/' + name + '.jpg'; // function to set correct file extension
-  this.timesShown = 0; // set this based off what's in storage
-  this.timesClicked = 0; // set this based off what's in storage
+  this.timesShown = 0;
+  this.timesClicked = 0;
 }
 
 
@@ -74,7 +60,6 @@ function start () {
   renderImages(imageA);
   renderImages(imageB);
   renderImages(imageC);
-  console.log('previous images in start: ', previousImages);
 }
 
 
@@ -113,7 +98,6 @@ function imageGroupGenerator (previousImages) {
     imageC = generateRandomImage();
   }
   currentImages.push(imageC);
-  console.log('current images after random generation: ', currentImages);
 
   return previousImages;
 }
@@ -165,16 +149,13 @@ function picClickHandler (event) {
     setUpList();
     displayChart();
     clearAllData();
-    console.log('productState afer clear all data: ', productState);
   } else {
     for (var i = 0; i < currentImages.length; i++) {
       productObject[currentImages[i]].timesShown++;
     }
 
     previousImages = currentImages;
-    console.log('was current, no previous images: ',previousImages);
     currentImages = [];
-    console.log('now empty current images: ', currentImages);
 
     var clicked = event.target.getAttribute('id');
     productObject[clicked].timesClicked++;
@@ -184,9 +165,7 @@ function picClickHandler (event) {
     imagesParent.removeChild(imagesParent.lastChild);
 
     userClicks++;
-    console.log('updated user clicks: ', userClicks);
     setProductState (productObject, currentImages, previousImages, userClicks);
-    console.log('updated product state: ', productState);
 
     start();
   }
@@ -260,7 +239,6 @@ function setProductState (productObject, currentImages, previousImages, userClic
 function getProductState () {
   storageProductState = localStorage.getItem('productState');
   var parsedProductState = JSON.parse(storageProductState);
-  console.log('saved state: ', parsedProductState);
   return parsedProductState;
 }
 
