@@ -36,11 +36,13 @@ function main () {
     console.log('productState: ', productState);
     productObject = productState.productObject;
     console.log('productObject.getProductState(): ', productObject);
-    // currentImages = getProductState();
-    // console.log('productState.currentImages: ', currentImages);
     previousImages = productState.previousImages;
     console.log('productState.previousImages: ', previousImages);
-    userClicks = productState.userClicks;
+    if (productState.userClicks <= maxClicks) {
+      userClicks = productState.userClicks;
+    } else {
+      userClicks = 0;
+    }
     console.log('productState.userClicks: ', userClicks);
     console.log('=======================================');
     console.log('=======================================');
@@ -164,7 +166,7 @@ function picClickHandler (event) {
     imagesParent.removeEventListener ('click', picClickHandler);
     setUpList();
     displayChart();
-    clearAllData();
+    //clearAllData();
     console.log('productState afer clear all data: ', productState);
   } else {
     for (var i = 0; i < currentImages.length; i++) {
