@@ -17,7 +17,7 @@ var resultsList = document.createElement('ul');
 var names = [];
 var shown = [];
 var clicks = [];
-var productState = null;
+var productState;
 console.log(productState);
 var storageProductState;
 
@@ -28,17 +28,13 @@ var storageProductState;
 // Main function to first check if there's data in storage; if there is, pull
 // it out and initialize the variables with the data in storage
 function main () {
-  if (!productState === null) {
-    createProductObjects();
-    start();
-  } else {
+  if (localStorage.getItem('productState')) {
     console.log('hello');
     console.log('=======================================');
     console.log('==============from main()==============');
     productState = getProductState();
     console.log('productState: ', productState);
     productObject = productState.productObject;
-    //productObject = createProductObjects();
     console.log('productObject.getProductState(): ', productObject);
     // currentImages = getProductState();
     // console.log('productState.currentImages: ', currentImages);
@@ -48,9 +44,13 @@ function main () {
     console.log('productState.userClicks: ', userClicks);
     console.log('=======================================');
     console.log('=======================================');
+    start();
+  } else {
+    createProductObjects();
+    start();
   }
   //createProductObjects();
-  start();
+  //start();
 }
 main();
 // ================================
